@@ -31,5 +31,4 @@
     volumes:
     - "/etc/ha/config/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg"
     ports:
-    -  "{{ PEER_PORT }}:2380"
-    -  "{{ CLIENT_PORT }}:2379"
+    -  "{{ HA_PORT }}:{{ HA_PORT }}"

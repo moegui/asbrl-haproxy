@@ -1,2 +1,2 @@
 [haproxy]
-haproxy ansible_host=3.80.73.102 ansible_port=22 ansible_user='ubuntu'
+localhost

@@ -1,12 +1,13 @@
 ---
 - name: example
   gather_facts: true
-  hosts: "haproxy"
+  hosts: "localhost"
   order: sorted
 
   tasks:
     - name: Run ha proxy
       include_role:
-        name: asbrl-etcd
+        name: asbrl-haproxy
       vars:
-        FILE_CONFIG: 
+        HA_CONFIG: /mnt/c/git/moegui/asbrl/asbrl-haproxy/test/haproxy.cfg
+        HA_PORT: '8080'
