@@ -1,0 +1,12 @@
+---
+- name: example
+  gather_facts: true
+  hosts: "haproxy"
+  order: sorted
+
+  tasks:
+    - name: Run ha proxy
+      include_role:
+        name: asbrl-etcd
+      vars:
+        FILE_CONFIG: 
