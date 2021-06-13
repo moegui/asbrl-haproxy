@@ -5,15 +5,12 @@
     owner: root
     group: root
     mode: u+rwX,g+rwX,o=rX
-  tags: 
-  - node
 
 - name: copy Dockerfile
   copy:
     src: "{{ HA_CONFIG }}"
     dest: "/etc/ha/config/haproxy.cfg"
-  tags:
-  - node  
+    mode: u+rwX,g+rwX,o=rX
 
 - name: Docker run
   docker_container:

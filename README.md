@@ -22,7 +22,19 @@ None
 Example Playbook
 ----------------
 
-    
+    ---
+    - name: example
+      gather_facts: true
+      hosts: "haproxy"
+      order: sorted
+
+      tasks:
+        - name: Run ha proxy
+          include_role:
+            name: asbrl-haproxy
+          vars:
+            HA_CONFIG: /mnt/c/git/moegui/asbrl/asbrl-haproxy/test/haproxy.cfg
+            HA_PORT: '8080'
 
 License
 -------
