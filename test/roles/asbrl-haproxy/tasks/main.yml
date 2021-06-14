@@ -1,0 +1,31 @@
+- name: Create monitor folder
+  file:
+    path: "/etc/ha/config"
+    state: directory
+    owner: root
+    group: root
+    mode: u+rwX,g+rwX,o=rX
+
+- name: copy Dockerfile
+  template:
+    src: "haproxy.cfg.j2"
+    dest: "/etc/ha/config/haproxy.cfg"
+    mode: u+rwX,g+rwX,o=rX
+
+- name: Docker run
+  docker_container:
+    name: "{{ CONTAINER_NAME }}"
+    image: "{{ IMAGE }}:{{ IMAGE_TAG }}"
+    pull: "no"
+    recreate: "yes"
+    cpu_period: "{{ DOCKER_CPU_PERIOD }}"
+    cpu_quota: "{{ DOCKER_CPU_QUOTA }}"
+    memory: "{{ DOCKER_MEMORY }}"
+    state: "{{ CONTAINER_STATE }}"
+    restart_policy: "unless-stopped"
+    log_driver: "{{ DOCKER_LOG_DRIVER }}"
+    log_options: "{{ DOCKER_LOG_OPTIONS }}"
+    volumes:
+    - "/etc/ha/config/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg"
+    ports:
+    -  "{{ HA_PORT }}:{{ HA_PORT }}"
