@@ -2,13 +2,13 @@ global
 	maxconn 100
 
 defaults
-	log global
-	mode tcp
-	retries 2
-	timeout client 30m
-	timeout connect 4s
-	timeout server 30m
-	timeout check 5s
+	log {{ HA_LOG }}
+	mode {{ HA_MODE }}
+	retries {{ HA_RETRIES }}
+	timeout client {{ HA_TIMEOUT_CLIENT }}
+	timeout connect {{ HA_TIMEOUT_CONNECT }}
+	timeout server {{ HA_TIMEOUT_SERVER }}
+	timeout check {{ HA_TIMEOUT_CHECK }}
 
 listen stats
 	mode http
