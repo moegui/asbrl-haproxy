@@ -9,3 +9,4 @@ VOLUME_STATE: 'present'
 DOCKER_LOG_DRIVER: "json-file"
 DOCKER_LOG_OPTIONS: "{}"
 DOCKER_IMAGE_PUSH: false
+STATS_ENABLE: enable

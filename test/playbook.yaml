@@ -9,5 +9,9 @@
       include_role:
         name: asbrl-haproxy
       vars:
-        HA_CONFIG: /mnt/c/git/moegui/asbrl/asbrl-haproxy/test/haproxy.cfg
-        HA_PORT: '8080'
+        HA_PORT: '5432'
+        HA_HEALTH_CHECK: http-check expect status 200
+        HA_SERVERS: 
+          - server patroni01 192.168.56.40:6432 maxconn 80 check port 8008
+          - server patroni02 192.168.56.41:6432 maxconn 80 check port 8008
+          - server patroni03 192.168.56.42:6432 maxconn 80 check port 8008

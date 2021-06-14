@@ -7,8 +7,8 @@
     mode: u+rwX,g+rwX,o=rX
 
 - name: copy Dockerfile
-  copy:
-    src: "{{ HA_CONFIG }}"
+  template:
+    src: "haproxy.cfg.j2"
     dest: "/etc/ha/config/haproxy.cfg"
     mode: u+rwX,g+rwX,o=rX
 
