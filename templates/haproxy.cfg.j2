@@ -16,10 +16,14 @@ listen stats
 	stats {{ STATS_ENABLE }}
 	stats uri /
 
-listen config_server
-	bind *:{{ HA_PORT }}
-	{{ HA_HEALTH_CHECK }}
+{% for z in range(0,HA_SERVERS|length) %}
+
+listen {{ HA_SERVERS[z].HA_NAME }}
+	bind *:{{ HA_SERVERS[z].HA_PORT }}
+	{{ HA_SERVERS[z].HA_HEALTH_CHECK }}
 	default-server inter 3s fall 3 rise 2 on-marked-down shutdown-sessions
-        {% for server in HA_SERVERS %}
+        {% for server in HA_SERVERS[z].HA_SERVERS %}
         {{ server }}
         {% endfor %}
+
+{% endfor %}
