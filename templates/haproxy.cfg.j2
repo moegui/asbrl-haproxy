@@ -18,7 +18,6 @@ listen stats
 
 listen config_server
 	bind *:{{ HA_PORT }}
-	option httpchk
 	{{ HA_HEALTH_CHECK }}
 	default-server inter 3s fall 3 rise 2 on-marked-down shutdown-sessions
         {% for server in HA_SERVERS %}

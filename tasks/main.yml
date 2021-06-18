@@ -5,12 +5,14 @@
     owner: root
     group: root
     mode: u+rwX,g+rwX,o=rX
+  tags: asbrl-haproxy
 
 - name: copy Dockerfile
   template:
     src: "haproxy.cfg.j2"
     dest: "/etc/ha/config/haproxy.cfg"
     mode: u+rwX,g+rwX,o=rX
+  tags: asbrl-haproxy
 
 - name: Docker run
   docker_container:
@@ -29,3 +31,4 @@
     - "/etc/ha/config/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg"
     ports:
     -  "{{ HA_PORT }}:{{ HA_PORT }}"
+  tags: asbrl-haproxy
